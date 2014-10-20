@@ -1,0 +1,28 @@
+You can associate entities through a one-to-one relationship using @OneToOne. 
+There are three
+cases for one-to-one associations: 
+
+1]either the associated entities share the same primary keys
+values, 
+
+2]a foreign key is held by one of the entities (note that this FK column in the database should
+be constrained unique to simulate one-to-one multiplicity), 
+
+3]or a association table is used to store
+the link between the 2 entities (a unique constraint has to be defined on each fk to ensure the
+one to one multiplicity).
+
+
+THIS IS one-to-one association using shared primary keys:
+
+when to use:use a shared primary key association if one of the two entities seems more
+important and can act as the primary key source.
+
+The @PrimaryKeyJoinColumn annotation does say that the primary key of the entity is used as
+the foreign key value to the associated entity.
+
+
+The association may be bidirectional. In a bidirectional relationship, one of the sides (and only one)
+has to be the owner: the owner is responsible for the association column(s) update. To declare
+a side as not responsible for the relationship, the attribute mappedBy is used. mappedBy refers to
+the property name of the association on the owner side.

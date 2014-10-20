@@ -1,0 +1,43 @@
+mysql> select * from bid;
++----+---------+------------+
+| id | name    | item_id_fk |
++----+---------+------------+
+|  1 | 100rs   |          1 |
+|  2 | 10000rs |          1 |
++----+---------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from item;
++----+-------------+
+| id | name        |
++----+-------------+
+|  1 | sachins bat |
++----+-------------+
+
+1]@JoinColumn behaves differently according to the mapping 1-m,1-1,m-1,m-m annotaion
+above it.
+2]in case of @OneToMany, @JoinColumn gets added as a foreign key to target entity
+3]nullable:,decides wheather foreign key can be null or not
+4]
+=======================================================================================
+1]Bags have the most efficient performance characteristics of all the collections
+you can use for a bidirectional one-to-many entity association (in other words, if
+the collection side is inverse="true"). By default, collections in Hibernate are
+loaded only when they’re accessed for the first time in the application. Because a
+bag doesn’t have to maintain the index of its elements (like a list) or check for
+duplicate elements (like a set), you can add new elements to the bag without triggering
+the loading.
+
+
+2]On the other hand, you can’t eager-fetch two
+collections of bag type simultaneously (for example, if bids and images of an
+Item were one-to-many bags)
+
+
+3]If you map a bidirectional one-to-many entity association with an indexed collection
+(this is also true for maps and arrays), you have to switch the inverse sides.
+You can’t make an indexed collection inverse="true". The collection becomes
+responsible for state synchronization, and the one side, the Bid, has to be made
+inverse.
+
+pg 329

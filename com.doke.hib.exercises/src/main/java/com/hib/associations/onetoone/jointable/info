@@ -1,0 +1,11 @@
+when to use:
+1]when you have optional one to one mapping between two entities.
+ITEM 0-1------------------ 1SHIPMENT
+2]when you have to add extra info about the asociation like,
+when was it done,who did it.Instead of adding this information to any of the
+two table.u can keep it in the middle table.
+3]If optional=false:shipment has to have item entity in it,while saving,(i.e property cannot be null)
+4]If optional=true:shipment may or may not have item entity in it.(i.e property can  be null)
+
+shp.setItem(null);=not-null property references a null or transient value : com.hib.associations.onetoone.jointable.Shipment.item
+

@@ -1,0 +1,19 @@
+1]when to use join table:when one to many mapping is optional.
+i.e user may have baught items or an item may not be bought by any user
+
+2]unique = true for item_id_fk,because items bought by one user cannot be bought by other user.
+
+3]nullable=false for item_id_fk,if users itemlist is set to null,it should not be saved to mapping table.
+
+*always think of 
+1]is association is optional or not.
+2]is association is strictly unique.(unique true/false)
+3]is saving null value in foreign key column allowed?(nullable true/false)
+We always try to avoid nullable columns in
+a relational database schema. Information that is unknown degrades the quality
+of the data you store.
+
+**imp: owner of relationship i.e item can update the association
+				 * itm2rd assigned to another user and saved,and its association with previous user is changed to new user
+				 
+				 332 pg

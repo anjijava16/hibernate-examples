@@ -1,0 +1,5 @@
+1]Item has a collection of value types i.e a set of  objects of Image
+2]Collection of Image objects is a HashSet
+3]Item 1---------* Image(value type)
+4]Item id is stored as foreign key in image table
+6]as collection is a HashSet, order of set insertion is  NOT preserved in DB table,Image 

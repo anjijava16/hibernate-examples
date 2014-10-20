@@ -1,0 +1,21 @@
+*You can create more complex maps; not only can the
+keys be references to entities, but so can the values. The result can therefore be a
+ternary association.
+
+*Values as references to entities
+First, let’s assume that only the value of each map entry is a reference to another
+entity. The key is a value type, a long. Imagine that the Item entity has a map of
+Bid instances and that each map entry is a pair of Bid identifier and reference to a
+Bid instance. If you iterate through anItem.getBidsByIdentifier(), you iterate
+through map entries that look like (1, <reference to Bid with PK 1>), (2,
+<reference to Bid with PK 2>), and so on.
+
+*
+@MapKey(name="id")
+@OneToMany
+private Map<Long,Bid> bidsByIdentifier = new HashMap<Long,Bid>();
+New here is the @MapKey element of JPA—it maps a property of the target entity as
+key of the map.The default if you omit the name attribute is the identifier property
+of the target entity (so the name here is redundant). Because the keys of a map
+form a set, values are expected to be unique for a particular map—this is the case
+for Bid primary keys but likely not for any other property of Bid.

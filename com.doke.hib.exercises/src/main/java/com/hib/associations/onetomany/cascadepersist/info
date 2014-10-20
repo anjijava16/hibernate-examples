@@ -1,0 +1,1 @@
+JPA cascade type does not work with hibernate session.save,for that u need to use hibernate cascade

@@ -1,0 +1,26 @@
+2]a foreign key is held by one of the entities (note that this FK column in the database should
+be constrained unique to simulate one-to-one multiplicity), 
+
+mysql> select * from User;
++----+------------+------------+
+| id | userName   | address_fk |
++----+------------+------------+
+|  1 | misut ozil |          1 |
++----+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from Address;
++-----------+---------+
+| addressId | address |
++-----------+---------+
+|         1 | germany |
++-----------+---------+
+1 row in set (0.00 sec)
+
+3]@JoinColumn
+:name = owning entity column name,that will store primary key of referenced entity
+User column name that will store primary key of Address i.e address_fl
+:referencedColumnName = Optional,column in the targeted entity that will be used to join i.e addressId
+
+
+4]unique = true,means every user will have a unique address.No two users will have same address

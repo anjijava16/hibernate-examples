@@ -1,0 +1,48 @@
+2]a foreign key is held by one of the entities (note that this FK column in the database should
+be constrained unique to simulate one-to-one multiplicity), 
+
+mysql> select * from User;
++----+------------+------------+
+| id | userName   | address_fk |
++----+------------+------------+
+|  1 | misut ozil |          1 |
++----+------------+------------+
+1 row in set (0.00 sec)
+
+mysql> select * from Address;
++-----------+---------+
+| addressId | address |
++-----------+---------+
+|         1 | germany |
++-----------+---------+
+1 row in set (0.00 sec)
+
+3]@JoinColumn
+:name = owning entity column name,that will store primary key of referenced entity
+User column name that will store primary key of Address i.e address_fl
+:referencedColumnName = Optional,column in the targeted entity that will be used to join i.e addressId
+
+4]mappedBy = used in biderectional mappings
+4.1]entity having mapped by on its side is slave i.e Address.Entiy at the other side is the owner
+i.e User
+
+The association may be bidirectional. In a bidirectional relationship, one of the sides (and only one)
+has to be the owner: the owner is responsible for the association column(s) update.
+To declare a side as not responsible for the relationship, the attribute mappedBy is used. mappedBy refers to
+the property name of the association on the owner side. In our case, this is address. As you
+can see, you don't have to (must not) declare the join column since it has already been declared
+on the owners side.
+
+
+*the owner is responsible for the association column(s) update.
+:=IF YOU CHANGE THE ASSOCIATION COLUMN OF OWNER AND SAVE THE OWNER THE CHANGES WILL BE AUTOMATICALLY GET REFLECTED AT THE SLAVE.
+:BUT IF YOU CHANGE THE ASOCIATION COLUMN OF SLAVE AND SAVE THE SLAVE ,IT WILL NOT WORK
+
+
+
+
+
+
+
+
+

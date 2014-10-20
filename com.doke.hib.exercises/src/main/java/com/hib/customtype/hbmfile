@@ -1,0 +1,14 @@
+<hibernate-mapping>
+ <class name="com.packtpub.springhibernate.ch07.School" table="SCHOOL">
+ <id name="id" type="long" column="id">
+ <generator class="increment"/>
+ </id>
+ <property name="history" 
+ type="com.packtpub.springhibernate.ch07.HistoryType">
+ <column="INITIAL_CAPACITY" type="long"/>
+ <column="ESTABLISHMENT_DATE" type="date"/> 
+ </property>
+
+ <!-- mapping of other fields -->
+ </class>
+</hibernate-mapping>

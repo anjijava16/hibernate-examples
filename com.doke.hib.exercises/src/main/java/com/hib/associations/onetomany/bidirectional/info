@@ -1,0 +1,8 @@
+1]one to many bidirectional association one side of association is weaker and many side is owner.
+2]Associations marked as mappedBy must not define database mappings like @JoinTable or @JoinColumn: 
+ com.hib.associations.onetomany.bidirectional.Item.bids,i.e @JoinTable or @JoinColumn belong to owner of relationship
+3]in biderectional association(without cascade)
+persist weaker one first,
+then create stronger one,
+make association between them,
+persist stronger one.

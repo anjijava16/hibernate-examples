@@ -1,0 +1,42 @@
+1]More formally, an entity is any class whose instances have their own persistent
+identity. A value type is a class that doesn’t define some kind of persistent identity.
+In practice, this means that entity types are classes with identifier properties, and
+value type classes depend on an entity.
+
+2]Therefore, entities have their own lifecycle. The save() and delete() methods
+of the Hibernate Session interface apply to instances of entity classes, never to
+value type instances. The persistence lifecycle of a value type instance is completely
+tied to the lifecycle of the owning entity instance. For example, the username
+becomes persistent when the user is saved; it never becomes persistent independently
+of the user.
+
+3]Most ORM solutions that we have seen provide support for user-defined strategies
+for performing type conversions. These are often called converters. For
+example, the user can create a new strategy for persisting a property of JDK type
+Integer to a VARCHAR column. Hibernate provides a similar, much more powerful,
+feature called custom mapping types.
+
+CUSTOM TYPES
+For most mappings, Hibernate's built-in types are enough. However, in some situations, you may need to define a custom type. These situations generally happen when we want Hibernate to treat basic Java types or persistent classes differently than it normally would. Here are some situations where you may need to define and use a custom type:
+
+1]Storing a particular Java type in a column with a different SQL type than Hibernate normally uses:
+ For example, you might want to store a java.util.Date object in a column of type VARCHAR, or a String object in a DATE column.
+2]Mapping a value type: Value types, the dependent persistent classes that do not have their own identifiers, can be mapped with custom types. 
+This means you can treat value types similarly to primitive types and map them with the <property> element, instead of <component>.
+3]Splitting up a single property value and storing the result in more than one database column: For example, assume that any phone number 
+is split-up into four components—representing country code, area code, exchange, and line number, stored in four columns of the database.
+ We may take this approach to provide a search facility for countries, areas, exchanges, and line numbers.
+ If the phone numbers are represented as long numbers populated from four columns, we need to define a custom type and tell Hibernate how
+ to assemble the number.
+4] 
+Storing more than one property in a single column: For example, if a papersproperty of a Student class is represented as an object of java.util.List and holds the file paths of all of the papers the student has written. You can define a custom type to persist all of the papers file paths as a semicolon-separated string in a single column.
+Using an application-specific class as an identifier for the persistent class: For example, suppose you want to use the application-specific class CustomIdentifier, instead of the int, long, String, and so on, for persistent class identifiers. In this case, you also need to implement an IdentifierGenerator to tell Hibernate how to create new identifier values for non-persisted objects.
+In practice, other use cases also need custom types for implementation and use. In all of these situations,
+ you must tell Hibernate how to map a particular Java type to a database representation. You do this by implementing one of 
+ the interfaces which Hibernate provides for this purpose. The basic and most commonly used of these 
+ interfaces include org.hibernate.usertype.UserType and org.hibernate. usertype.CompositeUserType.
+  Let's look at these in detail, discussing their differences, and how to use them.
+
+
+
+

@@ -1,0 +1,8 @@
+
+A Category has a Map of Item instances—the key of each map entry is a reference
+to an Item. The value of each map entry is the User who added the Item to
+the Category. This strategy is appropriate if there are no additional columns on
+the join table; see the schema in figure 7.12.
+The advantage of this strategy is that you don’t need any intermediate class, no
+entity or value type, to represent the ADDED_BY_USER_ID column of the join table
+in your Java application.

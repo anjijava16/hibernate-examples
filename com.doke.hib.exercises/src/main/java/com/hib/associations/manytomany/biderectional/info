@@ -1,0 +1,45 @@
+1]many to many association between Category and Item,
+
+Category m----------------m  Item
+||
+||you need to add some extra
+||data to join table other than foreign keys of category and item
+||
+\/
+Category 1------------m CategorizedItem m-------------------1 Item
+(extra data added as created date and createdby to CategorizedItem)
+||
+||
+||other than entities involved in many to many association, 
+||if you add one more entity to CategorizedItem.Then it becomes ternary
+||association mapping
+\/
+Category 1------------m CategorizedItem m-------------------1 Item
+                              |m
+                              |
+                              |1
+                             User  
+also instead of creating CategorizedItem as entity we can create it as
+a component ,and add this collection of components to Category.
+
+*The advantage of a collection of components is clearly the implicit lifecycle of
+the link objects. To create an association between a Category and an Item, add a
+new CategorizedItem instance to the collection. To break the link, remove the
+element from the collection. No extra cascading settings are required, and the
+Java code is simplified:
+CategorizedItem aLink =
+new CategorizedItem(aUser.getUserName(), aCategory, anItem);
+aCategory.getCategorizedItems().add( aLink );
+aCategory.getCategorizedItems().remove( aLink );
+
+*The downside of this approach is that there is no way to enable bidirectional navigation:
+A component (such as CategorizedItem) can’t, by definition, have shared
+references. You can’t navigate from Item to CategorizedItem. However, you can
+write a query to retrieve the objects you need.
+
+
+
+
+
+
+ 

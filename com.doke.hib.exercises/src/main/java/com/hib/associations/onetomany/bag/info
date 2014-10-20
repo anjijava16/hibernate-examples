@@ -1,0 +1,16 @@
+1]Bags have the most efficient performance characteristics of all the collections
+you can use for a bidirectional one-to-many entity association
+2]By default, collections in Hibernate are
+loaded only when they’re accessed for the first time in the application. Because a
+bag doesn’t have to maintain the index of its elements (like a list) or check for
+duplicate elements (like a set), you can add new elements to the bag without triggering
+the loading.
+3]This is an important feature if you’re going to map a possibly,large collection of entity references.
+as no select query is executed while getting bag collection.
+
+4]if you do not write a @joincolumn annotation then by default the owner tables gets,
+weaker table name + weaker table id column name as a column for foreign key.
+
+thus we get item_id in Bid table.
+
+pg 326
